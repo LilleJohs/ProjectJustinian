@@ -1,13 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public GameObject InfoText;
+    public GameObject infoTextComponent;
+
+
     public GameObject BookView;
+    public GameObject bookTitleComponent;
+    public GameObject bookTextComponent;
 
     private Transform mainCamera;
 
@@ -25,13 +30,16 @@ public class PlayerInteract : MonoBehaviour
                 Debug.DrawRay(mainCamera.position, mainCamera.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
                 if (hit.transform.tag == "Interactive")
                 {
-                    InfoText.SetActive(true);
+                    string bookTitle = hit.transform.GetComponent<BookInfo>().bookTitle;
+                    infoTextComponent.GetComponent<Text>().text = "Read '" + bookTitle + "'";
                     if (Input.GetKeyDown(KeyCode.E)) {
                         BookView.SetActive(!BookView.activeSelf);
+                        bookTitleComponent.GetComponent<Text>().text = bookTitle;
+                        bookTextComponent.GetComponent<Text>().text = hit.transform.GetComponent<BookInfo>().bookText;
                         PlayerState.Pause();
                     }
                 } else {
-                    InfoText.SetActive(false);
+                    infoTextComponent.GetComponent<Text>().text = "";
                 }
             }
         } else {
