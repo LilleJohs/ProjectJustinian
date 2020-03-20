@@ -7,10 +7,6 @@ public class MouseLook : MonoBehaviour
     public float lookSpeed = 3;
     private Vector2 rotation = Vector2.zero;
 
-    void Start() {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
     void Update() {
         rotation.y += Input.GetAxis("Mouse X");
         rotation.x += -Input.GetAxis("Mouse Y");
