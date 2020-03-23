@@ -64,8 +64,8 @@ public class FPSController : MonoBehaviour
 
             rotation.y += Input.GetAxis("Mouse X");
             rotation.x += -Input.GetAxis("Mouse Y");
-            rotation.x = Mathf.Clamp(rotation.x, -15f, 15f);
-            transform.eulerAngles = new Vector2(0,rotation.y) * mouseSensitivity;
+            rotation.x = Mathf.Clamp(rotation.x, -20f, 20f);
+            transform.eulerAngles = new Vector2(0, -90 + rotation.y) * mouseSensitivity;
             Camera.main.transform.localRotation = Quaternion.Euler(rotation.x * mouseSensitivity, 0, 0);
         }  
     }
